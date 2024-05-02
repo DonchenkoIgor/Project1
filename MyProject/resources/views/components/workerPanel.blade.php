@@ -6,6 +6,10 @@
     </svg>
     <h2 class="fw-normal">{{ $position }}</h2>
     <h1 class="card-title pricing-card-title">{{ $name }}<br></h1>
-    <li>{{$bio}}</li><br>
-    <p><a class="btn btn-secondary" href="#">Select and more details</a></p>
+    <ul class="list-unstyled mt-3 mb-4">
+        <li>{{ $bio }}</li>
+    </ul>
+    <p>
+        <a href="{{ route('pages.staff', ['entity' => 'worker', 'data' => $id]) }}" class="w-100 btn btn-lg btn-outline-primary">Select</a>
+    </p>
 </div>
