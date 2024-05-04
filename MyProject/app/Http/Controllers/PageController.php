@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
+
+
     public function time(int $interval, int $serviceDuration, int $breakDuration)
     {
         $start = new \DateTime('09:00');
@@ -40,6 +42,29 @@ class PageController extends Controller
         return $timeSlots;
     }
 
+
+
+    public function vacation(string $start, int $duration)
+    {
+        $start = new \DateTime($start);
+
+        $allowedDays = [1, 2, 3, 5, 14];
+        if(!in_array($duration, $allowedDays)){
+            return "Неприпустима тривалість відпустки";
+        }
+
+        if($start < new \DateTime()){
+            return "Недопустима дата відпустки";
+        }
+
+        $end = clone $start;
+        $end ->modify("+$duration days");
+
+
+        return "Ви запросили відпустку з {$start->format('Y-m-d')} до {$end->format('Y-m-d')}.";
+
+    }
+
     public function index()
     {
         return view('app');
@@ -57,9 +82,34 @@ class PageController extends Controller
         return view('pages.services', ['services' => $services]);
     }
 
-    public function schedule()
+    public function schedule(Request $request)
     {
-        return view('services');
+        if($request->has('entity') || $request->has('date')){
+            return redirect()->route('pages.schedules');
+        }
+
+
+        $timeSlots = [
+            'Monday' => [
+                    'date'  => '08/03/2024',
+                    'slots' => [
+                        ['start_time' => '08:00', 'end_time' => '09:00'],
+                        ['start_time' => '09:10', 'end_time' => '10:10'],
+                        ['start_time' => '10:20', 'end_time' => '11:30'],
+                        ['start_time' => '11:40', 'end_time' => '13:00'],
+                    ]
+                ],
+            'Tuesday' => [
+                'date'  => '09/03/2024',
+                'slots' => [
+                    ['start_time' => '10:00', 'end_time' => '10:45'],
+                    ['start_time' => '11:00', 'end_time' => '11:45'],
+                    ['start_time' => '12:00', 'end_time' => '12:45'],
+                    ['start_time' => '13:00', 'end_time' => '13:45'],
+                ]
+            ]
+        ];
+        return view('pages.schedules')->with('slots', $timeSlots);
     }
 
     public function confirmation()

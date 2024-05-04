@@ -10,8 +10,7 @@
                 <li>{{$option}}</li>
                 @endforeach
             </ul>
-            <a href="{{ route('pages.services', ['entity' => 'service', 'data' => $id]) }}" class="w-100 btn btn-lg btn-primary">Select</a>
-            <button type="button" class="w-100 btn btn-lg btn-outline-primary">Order</button>
+            <a href="{{ route('pages.schedules', ['entity' => 'service', 'date' => $id]) }}" class="w-100 btn btn-lg btn-primary">Select</a>
         </div>
     </div>
 </div>

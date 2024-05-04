@@ -19,5 +19,11 @@ Route::get('/time/{interval}/{serviceDuration}/{breakDuration}', [\App\Http\Cont
 
 Route::get('/services', [\App\Http\Controllers\PageController::class, 'services'])->name('pages.services');
 Route::get('/staff', [\App\Http\Controllers\PageController::class, 'staff'])->name('pages.staff');
-Route::get('/schedule', [\App\Http\Controllers\PageController::class, 'schedule'])->name('pages.schedule');
+Route::get('/schedules', [\App\Http\Controllers\PageController::class, 'schedule'])->name('pages.schedules');
 Route::get('/confirmation', [\App\Http\Controllers\PageController::class, 'confirmation'])->name('pages.confirmation');
+
+Route::get('/vacation/{startDate}/{duration}', [\App\Http\Controllers\PageController::class, 'vacation']);
+
+
+
+
