@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +14,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\PageController::class, 'index']);
+Route::get('/', [\App\Http\Controllers\PageController::class, 'index'])->name('home');
+
+//Route::get('/', function () {
+    //return view('welcome');
+//});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware(['auth', 'verified', \App\Http\Middleware\CheckRole::class . 'admin,manager,assistant'])->group(function (){
+    Route::get('/control', [\App\Http\Controllers\UserController::class, 'access'])->name('pages.control');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
 
 Route::get('/time/{interval}/{serviceDuration}/{breakDuration}', [\App\Http\Controllers\PageController::class, 'time']);
 
@@ -24,6 +44,4 @@ Route::get('/confirmation', [\App\Http\Controllers\PageController::class, 'confi
 
 Route::get('/vacation/{startDate}/{duration}', [\App\Http\Controllers\PageController::class, 'vacation']);
 
-
-
-
+require __DIR__.'/auth.php';
