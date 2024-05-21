@@ -84,10 +84,6 @@ class PageController extends Controller
 
     public function schedule(Request $request)
     {
-        if($request->has('entity') || $request->has('date')){
-            return redirect()->route('pages.schedules');
-        }
-
 
         $timeSlots = [
             'Monday' => [
@@ -112,8 +108,8 @@ class PageController extends Controller
         return view('pages.schedules')->with('slots', $timeSlots);
     }
 
-    public function confirmation()
+    public function confirmation(Request $request)
     {
-        return view('confirmation');
+            return view('pages.confirmation');
     }
 }

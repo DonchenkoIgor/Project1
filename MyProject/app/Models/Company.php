@@ -13,4 +13,13 @@ class Company extends Model
         'name',
         'address',
     ];
+    public function workers()
+    {
+        return $this->belongsToMany(Worker::class);
+    }
+
+    public function services()
+    {
+        return $this->belongsToMany(Service::class);
+    }
 }

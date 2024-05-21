@@ -11,18 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('schedules', function (Blueprint $table) {
+        Schema::create('worker_service', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(\App\Models\Worker::class);
-            $table->json('monday');
-            $table->json('tuesday');
-            $table->json('wednesday');
-            $table->json('thursday');
-            $table->json('friday');
-            $table->json('saturday');
-            $table->json('sunday');
-            $table->json('history');
-            $table->timestamps();
+            $table->foreignIdFor(\App\Models\Service::class);
         });
     }
 
@@ -31,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('schedules');
+        Schema::dropIfExists('worker_service');
     }
 };

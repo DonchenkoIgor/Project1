@@ -13,4 +13,9 @@ class Service extends Model
         'price',
         'duration',
     ];
+
+    public function workers()
+    {
+        return $this->belongsToMany(Worker::class);
+    }
 }
