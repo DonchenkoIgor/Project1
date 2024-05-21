@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('schedules', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(\App\Models\Worker::class);
+            $table->json('monday');
+            $table->json('tuesday');
+            $table->json('wednesday');
+            $table->json('thursday');
+            $table->json('friday');
+            $table->json('saturday');
+            $table->json('sunday');
+            $table->json('history');
             $table->timestamps();
         });
     }
