@@ -15,7 +15,10 @@ return new class extends Migration
             $table->id();
             $table->integer('companyId');
             $table->integer('workerId');
-            $table->timestamp('timeslot');
+            $table->integer('serviceId');
+            $table->date('date')->comment('format dd-mm-yy');
+            $table->time('time')->comment('format H:i');
+            $table->integer('duration')->comment('in minutes');
             $table->float('price');
             $table->timestamps();
         });

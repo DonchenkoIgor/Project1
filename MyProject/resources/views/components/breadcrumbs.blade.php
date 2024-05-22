@@ -16,7 +16,7 @@
                 @endif
             </li>
             <li class="breadcrumb-item active">
-                <a class="link-body-emphasis fw-semibold text-decoration-none" href="{{ route('pages.schedule') }}">Shedule</a>
+                <a class="link-body-emphasis fw-semibold text-decoration-none" href="{{ route('pages.schedules') }}">Shedule</a>
             </li>
         </ol>
     </nav>

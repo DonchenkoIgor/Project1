@@ -179,4 +179,5 @@
 
     @include('components.footer')
 </div>
-</body></html>
+</body>
+</html>
