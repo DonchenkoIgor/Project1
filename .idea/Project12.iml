@@ -10,6 +10,8 @@
       <sourceFolder url="file://$MODULE_DIR$/Project_1/tests/Unit" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/MyProject/tests/Feature" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/MyProject/tests/Unit" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/MyProject/vendor/brick/math" />
       <excludeFolder url="file://$MODULE_DIR$/MyProject/vendor/carbonphp/carbon-doctrine-types" />
       <excludeFolder url="file://$MODULE_DIR$/MyProject/vendor/composer" />
@@ -123,6 +125,15 @@
       <excludeFolder url="file://$MODULE_DIR$/MyProject/vendor/voku/portable-ascii" />
       <excludeFolder url="file://$MODULE_DIR$/MyProject/vendor/webmozart/assert" />
       <excludeFolder url="file://$MODULE_DIR$/MyProject/vendor/laravel/breeze" />
+      <excludeFolder url="file://$MODULE_DIR$/MyProject/vendor/backpack/basset" />
+      <excludeFolder url="file://$MODULE_DIR$/MyProject/vendor/backpack/crud" />
+      <excludeFolder url="file://$MODULE_DIR$/MyProject/vendor/creativeorange/gravatar" />
+      <excludeFolder url="file://$MODULE_DIR$/MyProject/vendor/doctrine/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/MyProject/vendor/doctrine/dbal" />
+      <excludeFolder url="file://$MODULE_DIR$/MyProject/vendor/doctrine/deprecations" />
+      <excludeFolder url="file://$MODULE_DIR$/MyProject/vendor/doctrine/event-manager" />
+      <excludeFolder url="file://$MODULE_DIR$/MyProject/vendor/prologue/alerts" />
+      <excludeFolder url="file://$MODULE_DIR$/MyProject/vendor/psr/cache" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
