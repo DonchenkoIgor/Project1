@@ -40,6 +40,7 @@ class UserCrudController extends CrudController
      * @return void
      */
     protected function setupListOperation()
+
     {
         CRUD::setFromDb(); // set columns from db columns.
 

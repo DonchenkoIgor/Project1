@@ -24,6 +24,7 @@ class WorkerRequest extends FormRequest
      */
     public function rules()
     {
+
         return [
             'name' => 'required|min:2|max:255',
             'status' => 'required|in:Робітник,Старший робітник',
