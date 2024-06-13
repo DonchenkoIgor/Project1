@@ -14,6 +14,8 @@ class AdminController extends Controller
         $orders = Order::all();
         $ordersByEmployeesAndDay = [];
 
+
+
         foreach ($orders as $order){
             $employee  = $order->employee_name;
             $dayOfWeek = date('l', strtotime($order->created_at));
