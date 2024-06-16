@@ -20,8 +20,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 
-Route::get('/services', [\App\Http\Controllers\ApiController::class, 'services'])->name('pages.services');
-Route::get('/staff', [\App\Http\Controllers\ApiController::class, 'staff'])->name('pages.staff');
-Route::get('/schedules', [\App\Http\Controllers\ApiController::class, 'schedule'])->name('pages.schedules');
+Route::get('/services', [\App\Http\Controllers\ApiController::class, 'services']);
+Route::get('/staff', [\App\Http\Controllers\ApiController::class, 'staff']);
+Route::get('/schedules', [\App\Http\Controllers\ApiController::class, 'schedule']);
 Route::get('set-entity/{entity}/{data}', [\App\Http\Controllers\ApiController::class, 'saveStep'])->name('set-entity');
 

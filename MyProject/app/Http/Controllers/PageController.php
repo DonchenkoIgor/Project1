@@ -62,7 +62,6 @@ class PageController extends Controller
 
 
         return "Ви запросили відпустку з {$start->format('Y-m-d')} до {$end->format('Y-m-d')}.";
-
     }
 
     public function index()
