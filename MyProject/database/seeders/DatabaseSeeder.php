@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\Company;
+use App\Models\Order;
 use App\Models\Schedule;
+use Database\Factories\OrderFactory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Service;
 use App\Models\Worker;
@@ -22,6 +24,7 @@ class DatabaseSeeder extends Seeder
 
     private function initBaseEntities(): void
     {
+        Order::factory(10)->create();
         Worker::factory(3)->create();
         Service::factory(6)->create();
         Company::create([
