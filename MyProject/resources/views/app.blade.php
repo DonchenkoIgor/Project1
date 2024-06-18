@@ -9,8 +9,9 @@
     @include(
             'components.breadcrumbs',
             [
-                'worker'  => $orderSteps ? $orderSteps->getTimeSlot() : null,
+                'worker'  => $orderSteps ? $orderSteps->getWorker() : null,
                 'service' => $orderSteps ? $orderSteps->getService() : null,
+                'time-slot' => $orderSteps ? $orderSteps->getTimeSlot(): null,
             ]
     )
 @endsection

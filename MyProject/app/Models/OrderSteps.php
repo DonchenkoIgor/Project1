@@ -9,11 +9,13 @@ use Illuminate\Support\Facades\Session;
 class OrderSteps
 {
     public const SERVICES = 'services';
+    public const WORKER = 'worker';
     public const SCHEDULE = 'schedule';
     public const CONFIRMATION = 'confirmation';
 
     public const stepToRoutesMapping = [
       OrderSteps::CONFIRMATION => 'pages.confirmation',
+      OrderSteps::WORKER      => 'pages.staff',
       OrderSteps::SCHEDULE     => 'pages.schedule',
       OrderSteps::SERVICES     => 'pages.services',
     ];
@@ -21,6 +23,7 @@ class OrderSteps
     protected ?Service $service = null;
     protected ?Schedule  $schedule = null;
     protected ?string $date = null;
+    protected ?Worker $worker = null;
 
 
     public function getService(): ?Service
@@ -32,6 +35,17 @@ class OrderSteps
     {
         $service = Service::findOrFail($serviceId);
         $this->service = $service;
+    }
+
+    public function getWorker(): ?Worker
+    {
+        return $this->worker;
+    }
+
+    public function setWorker(int $workerId): void
+    {
+        $worker = Worker::findOrFail($workerId);
+        $this->worker = $worker;
     }
 
 
@@ -51,12 +65,18 @@ class OrderSteps
             case self::SERVICES:
                 $this->setService($data);
                 break;
+            case self::WORKER;
+                $this->setWorker($data);
+                break;
             case self::SCHEDULE:
                 $this->setTimeSlot($data);
+                break;
+            case self::CONFIRMATION;
                 break;
             default:
                 throw new \InvalidArgumentException('Invalid step');
         }
+        $this->flush();
     }
 
     public static function getInstance(): OrderSteps

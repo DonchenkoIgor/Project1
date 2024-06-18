@@ -31,5 +31,9 @@ class Order extends Model
     {
        return $this->belongsTo(Service::class, 'serviceId');
     }
+    public function schedule()
+    {
+        return $this->belongsTo(Schedule::class);
+    }
 
 }
