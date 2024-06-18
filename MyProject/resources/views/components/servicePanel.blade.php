@@ -10,7 +10,7 @@
                 <li>{{$option}}</li>
                 @endforeach
             </ul>
-            <a href="{{ route('set-entity', ['entity' => 'service', 'data' => $id]) }}" class="w-100 btn btn-lg btn-primary">Select</a>
+            <a href="{{ route('set-entity', ['entity' => 'service', 'data' =>$service->id]) }}" class="w-100 btn btn-lg btn-primary">Select</a>
         </div>
     </div>
 </div>

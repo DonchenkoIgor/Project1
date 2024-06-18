@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Service;
 use App\Models\Worker;
 use Illuminate\Http\Request;
@@ -102,7 +103,34 @@ class PageController extends Controller
                     ['start_time' => '12:00', 'end_time' => '12:45'],
                     ['start_time' => '13:00', 'end_time' => '13:45'],
                 ]
-            ]
+            ],
+            'Wednesday' => [
+                'date'  => '09/03/2024',
+                'slots' => [
+                    ['start_time' => '10:00', 'end_time' => '10:45'],
+                    ['start_time' => '11:00', 'end_time' => '11:45'],
+                    ['start_time' => '12:00', 'end_time' => '12:45'],
+                    ['start_time' => '13:00', 'end_time' => '13:45'],
+                ]
+            ],
+            'Thursday' => [
+                'date'  => '09/03/2024',
+                'slots' => [
+                    ['start_time' => '10:00', 'end_time' => '10:45'],
+                    ['start_time' => '11:00', 'end_time' => '11:45'],
+                    ['start_time' => '12:00', 'end_time' => '12:45'],
+                    ['start_time' => '13:00', 'end_time' => '13:45'],
+                ]
+            ],
+            'Friday' => [
+                'date'  => '09/03/2024',
+                'slots' => [
+                    ['start_time' => '10:00', 'end_time' => '10:45'],
+                    ['start_time' => '11:00', 'end_time' => '11:45'],
+                    ['start_time' => '12:00', 'end_time' => '12:45'],
+                    ['start_time' => '13:00', 'end_time' => '13:45'],
+                ]
+            ],
         ];
         return view('pages.schedules')->with('slots', $timeSlots);
     }

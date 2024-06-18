@@ -10,6 +10,9 @@
         <li>{{ $bio }}</li>
     </ul>
     <p>
-        <a href="{{ route('set-entity', ['entity' => 'worker', 'data' =>$worker->id]) }}" class="w-100 btn btn-lg btn-outline-primary">Select</a>
+        <strong>Selected Service:</strong> {{ $service->name }} <br>
+        <strong>Selected Worker:</strong> {{ $worker->name }}
     </p>
 </div>
+
+

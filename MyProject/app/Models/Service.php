@@ -20,4 +20,9 @@ class Service extends Model
     {
         return $this->belongsToMany(Worker::class);
     }
+
+    public function order()
+    {
+        return $this->belongsToMany(Order::class);
+    }
 }
