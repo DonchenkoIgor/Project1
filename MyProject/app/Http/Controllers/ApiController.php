@@ -8,6 +8,7 @@ use App\Models\Schedule;
 use App\Models\Service;
 use App\Models\Worker;
 use Carbon\Carbon;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -58,6 +59,9 @@ class ApiController extends Controller
     public function saveStep(Request $request, $entity, $data)
     {
         $workerId = $request->user()->id;
+        $userId = Auth::user();
+        $entity = $request->query('entity');
+        $data = $request->query('data');
 
 
         $orderSteps = OrderSteps::getInstance();
@@ -65,12 +69,13 @@ class ApiController extends Controller
 
         $currentDate = Carbon::now()->format('Y-m-d H:i');
 
-        if ($entity === 'service') {
+        if($entity === 'service'){
             $service = Service::find($data);
-            if (!$service) {
-                return response()->json(['error' => 'Service not found'], 404);
+            if(!$service){
+                return response()->json(['error' => 'Услуга не найдена'], 404);
             }
-            Order::create([
+            $order = Order::create([
+                'user_id' => $userId,
                 'companyId' => 1,
                 'workerId' => $workerId,
                 'serviceId' => $data,
@@ -79,13 +84,15 @@ class ApiController extends Controller
                 'duration' => $service->duration,
                 'price' => $service->price,
             ]);
-            return response()->json(['message' => 'Service selected successfully']);
-        } elseif ($entity === 'time-slot') {
+            return response()->json(['message' => 'Услуга выбрана успешно', 'order' => $order]);
+
+        }elseif ($entity === 'time-slot'){
             $timeSlot = Schedule::find($data);
-            if (!$timeSlot) {
-                return response()->json(['error' => 'Time slot not found'], 404);
+            if(!$timeSlot){
+                return response()->json(['error' => 'Временной слот не найден']);
             }
-            Order::create([
+            $order1 = Order::create([
+                'user_id' => $userId,
                 'companyId' => 1,
                 'workerId' => $workerId,
                 'timeSlotId' => $data,
@@ -94,9 +101,17 @@ class ApiController extends Controller
                 'duration' => $timeSlot->duration,
                 'price' => $timeSlot->price,
             ]);
-            return response()->json(['message' => 'Order created successfully']);
-        } else {
-            return response()->json(['error' => 'Invalid entity'], 404);
+            return response()->json(['message' => 'Заказ создан успешно', 'order' => $order1]);
+        }else{
+            return response()->json(['error' => 'Недопустимая сущность']);
         }
+    }
+    public function confirmation(Request $request)
+    {
+        $order = Order::first();
+        if(!$order){
+            return response()->json(['error' => 'Заказ не найден'], 404);
+        }
+        return response()->json(['order' => $order]);
     }
 }
