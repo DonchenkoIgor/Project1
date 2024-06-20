@@ -1,4 +1,23 @@
 # Project1
+1.Клонуйте репозиторій:
+2.Встановіть всі залежності за допомогою Composer:
+composer install,
+3.Підключіть базу даних з назвою Something, з логіном "root" та порожнім паролем,
+4.Налаштуйте файл .env з наступними параметрами для бази даних:
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=Something
+DB_USERNAME=root
+DB_PASSWORD=
+APP_KEY=base64:DtmuCQk4yXDek391/hVA0VmMZRpj0I/unb6gjVZYWjA=
+5.php artisan serve
+6.Відкрийте сайт у браузері та натисніть "Log In" для реєстрації.
+7.У базі даних встановіть роль 3 для користувача, який має адміністративні права.
+8.Створіть замовлення, перейшовши на сторінку Services, вибравши робітника та часовий слот.
+9.Після підтвердження сторінки відображення замовлення.
+10.Для перегляду створених замовлень уведіть URL http://127.0.0.1:8000/dashboard - відкриється особистий кабінет зі створеними замовленнями.
+11.Для входу до адмін-панелі введіть URL http://127.0.0.1:8000/admin, авторизуйтесь з електронною поштою та паролем користувача з необхідними правами 3-ї ролі.
 
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
