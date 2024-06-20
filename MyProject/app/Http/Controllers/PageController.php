@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Order;
 use App\Models\Service;
 use App\Models\Worker;
 use Illuminate\Http\Request;
@@ -137,6 +138,7 @@ class PageController extends Controller
 
     public function confirmation(Request $request)
     {
-            return view('pages.confirmation');
+            $order = Order::first();
+            return view('pages.confirmation', ['order' => $order]);
     }
 }

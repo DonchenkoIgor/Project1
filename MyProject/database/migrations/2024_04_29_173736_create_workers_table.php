@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('bio');
             $table->timestamps();
             $table->string('status')->default('Робітник');
+            $table->string('work_schedule')->nullable();
         });
     }
 

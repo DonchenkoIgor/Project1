@@ -14,6 +14,7 @@ class Worker extends Model
     protected $fillable = [
         'name',
         'status',
+        'work_schedule'
     ];
 
     public function schedule()
@@ -34,5 +35,9 @@ class Worker extends Model
     public function orders()
     {
         return $this->hasMany(Order::class, 'workerId');
+    }
+    public function getOrdersCountAttribute()
+    {
+        return $this->orders()->count();
     }
 }

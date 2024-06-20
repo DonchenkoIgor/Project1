@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Worker;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Models\Order;
 use App\Models\OrderSteps;
@@ -18,7 +19,13 @@ class ActionController extends Controller
 {
     public function saveStep(Request $request, $entity, $data)
     {
-        $workerId = $request->user()->id;
+        if (!Auth::check()) {
+            abort(403, 'Unauthorized action.');
+        }
+        $userId = Auth::id();
+
+        $workerId = Auth::id();
+
 
         $orderSteps = OrderSteps::getInstance();
         $orderSteps->setCurrentDate();
@@ -31,6 +38,7 @@ class ActionController extends Controller
                 abort(404);
             }
             $order = Order::create([
+                'user_id' => $userId,
                 'companyId' => 1,
                 'workerId' => $workerId,
                 'serviceId' => $data,
@@ -42,10 +50,12 @@ class ActionController extends Controller
 
             $orderSteps->setStep(OrderSteps::SERVICES, $data);
 
+
             return redirect()->route('pages.staff', ['entity' => 'worker', 'data' => $data]);
 
         } elseif ($entity === 'worker') {
             $orderSteps->setStep(OrderSteps::WORKER, $data);
+
 
             return redirect()->route('pages.schedules', ['entity' => $entity, 'data' => $data]);
 
@@ -54,7 +64,8 @@ class ActionController extends Controller
             if (!$timeSlot) {
                 abort(404);
             }
-            $order = Order::create([
+            $order1 = Order::create([
+                'user_id' => $userId,
                 'companyId' => 1,
                 'workerId' => $workerId,
                 'timeSlotId' => $data,
@@ -64,12 +75,10 @@ class ActionController extends Controller
                 'price' => $timeSlot->price,
             ]);
 
-            $orderSteps->setStep(OrderSteps::SCHEDULE, $data);
+            $order2 = Order::find($order1->id);
 
-            $order = Order::find($order->id);
+            return view('pages.confirmation',['entity' => $entity, 'data' => $data]);
 
-
-            return redirect()->route('pages.confirmation',['order_id' => $order->id]);
 
         } else {
             abort(404);

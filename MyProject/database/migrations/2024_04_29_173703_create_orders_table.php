@@ -20,6 +20,7 @@ return new class extends Migration
             $table->time('time')->comment('format H:i');
             $table->integer('duration')->comment('in minutes');
             $table->float('price');
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Route;
 // Routes you generate using Backpack\Generators will be placed here.
 
 Route::group([
-
     'prefix' => config('backpack.base.route_prefix', 'admin'),
     'middleware' => array_merge(
         (array) config('backpack.base.web_middleware', 'web'),
@@ -18,6 +17,9 @@ Route::group([
     'namespace' => 'App\Http\Controllers\Admin',
 ], function () { // custom admin routes
     Route::crud('user', 'UserCrudController');
-    Route::crud('service', 'ServiceCrudController');
     Route::crud('worker', 'WorkerCrudController');
-}); // this should be the absolute last line of this file
+    Route::crud('service', 'ServiceCrudController');
+});
+    Route::fallback(function () {
+        abort(404);
+});// this should be the absolute last line of this file

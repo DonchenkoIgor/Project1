@@ -41,10 +41,19 @@ class WorkerCrudController extends CrudController
     {
         CRUD::setFromDb(); // set columns from db columns.
 
-        /**
-         * Columns can be defined using the fluent syntax:
-         * - CRUD::column('price')->type('number');
-         */
+        CRUD::addColumn([
+           'name' => 'orders',
+           'label' => 'Orders',
+           'type' => 'model_function',
+            'function_name' => 'getOrdersCountAttribute',
+        ]);
+
+
+        CRUD::addColumn([
+            'name' => 'work_schedule',
+            'label' => 'Work Schedule',
+            'type'  => 'text',
+        ]);
     }
 
     /**
@@ -64,6 +73,15 @@ class WorkerCrudController extends CrudController
             'options' => ['Робітник' => 'Робітник', 'Старший робітник' => 'Старший робітник'],
             'allows_null' => false,
             'default' => $this->crud->getCurrentEntry()->status,
+        ]);
+
+        CRUD::addField([
+            'name' => 'work_schedule',
+            'label' => 'Work Schedule',
+            'type' => 'select_from_array',
+            'options' => ['8-17' => '8-17', '10-20' => '10-20'],
+            'allows_null' => false,
+            'default' => $this->crud->getCurrentEntry()->work_schedule,
         ]);
 
         /**
@@ -90,6 +108,15 @@ class WorkerCrudController extends CrudController
             'options' => ['Робітник' => 'Робітник', 'Старший робітник' => 'Старший робітник'],
             'allows_null' => false,
             'default' => $this->crud->getCurrentEntry()->status,
+        ]);
+
+        CRUD::addField([
+            'name' => 'work_schedule',
+            'label' => 'Work Schedule',
+            'type' => 'select_from_array',
+            'options' => ['8-17' => '8-17', '10-20' => '10-20'],
+            'allows_null' => false,
+            'default' => $this->crud->getCurrentEntry()->work_schedule,
         ]);
     }
 }

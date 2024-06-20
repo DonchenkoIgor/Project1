@@ -16,18 +16,21 @@ use App\Http\Controllers\ActionController;
 */
 
 Route::get('/', [\App\Http\Controllers\PageController::class, 'index'])->name('home');
-Route::get('/confirmation/{entity}/{data}', [\App\Http\Controllers\PageController::class, 'confirmation'])->name('pages.confirmation');
+Route::get('/confirmation', [\App\Http\Controllers\PageController::class, 'confirmation'])->name('pages.confirmation');
 
 //Route::get('/', function () {
     //return view('welcome');
 //});
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware(['auth', 'verified', \App\Http\Middleware\CheckRole::class . 'admin,manager,assistant'])->group(function (){
+
+//Route::get('/dashboard', function () {
+  //  return view('dashboard');
+//})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware(['auth', 'verified'])->group(function (){
     Route::get('/control', [\App\Http\Controllers\UserController::class, 'access'])->name('pages.control');
+    Route::get('/dashboard', [\App\Http\Controllers\UserController::class, 'board'])->name('dashboard');
 });
 
 Route::middleware('auth')->group(function () {
