@@ -54,6 +54,11 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'user_id');
+    }
+
     public function isManager()
     {
         return $this->role === 'manager';
@@ -67,9 +72,5 @@ class User extends Authenticatable
     public function isAssistant()
     {
         return $this->role === 'assistant';
-    }
-    public function orders()
-    {
-        return $this->hasMany(Order::class);
     }
 }

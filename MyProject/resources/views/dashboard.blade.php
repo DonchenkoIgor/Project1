@@ -10,14 +10,21 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 @isset($orders)
                     @if ($orders->isEmpty())
-                        <p>{{ __("You don't have any orders yet.") }}</p>
+                        <p class="font-bold text-white">{{ __("You don't have any orders yet.") }}</p>
                     @else
                         @foreach($orders as $order)
                             <div class="border border-gray-300 rounded-lg overflow-hidden shadow-sm">
                                 <div class="p-6">
                                     <h3 class="font-bold text-white">{{ __("Order ID:") }} {{ $order->id }}</h3>
+                                    <br>
                                     <div class="mb-2">
                                         <span class="font-bold text-white">{{ __("Date:") }}{{ $order->date }}</span>
+                                    </div>
+                                    <div class="mb-2">
+                                        <span class="font-bold text-white">{{ __("Service:") }} {{ $order->service->name ?? 'N/A' }}</span>
+                                    </div>
+                                    <div class="mb-2">
+                                        <span class="font-bold text-white">{{ __("Worker ID:") }} {{ $order->workerId ?? 'N/A' }}</span>
                                     </div>
                                     <div class="mb-2">
                                         <span class="font-bold text-white">{{ __("Time:") }} {{ $order->time }}</span>

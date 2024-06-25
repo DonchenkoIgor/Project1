@@ -16,12 +16,12 @@ class Service extends Model
         'duration',
     ];
 
-    public function workers()
+    public function worker()
     {
         return $this->belongsToMany(Worker::class);
     }
 
-    public function order()
+    public function orders()
     {
         return $this->belongsToMany(Order::class);
     }

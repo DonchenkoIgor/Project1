@@ -29,13 +29,14 @@ class Worker extends Model
 
     public function companies()
     {
-        return $this->belongsToMany(Company::class);
+        return $this->belongsToMany(Company::class, 'companyId');
     }
 
     public function orders()
     {
         return $this->hasMany(Order::class, 'workerId');
     }
+
     public function getOrdersCountAttribute()
     {
         return $this->orders()->count();
