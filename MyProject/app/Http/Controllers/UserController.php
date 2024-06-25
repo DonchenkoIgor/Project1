@@ -29,6 +29,7 @@ class UserController extends Controller
     {
         $user = Auth::user();
 
+
         $orders = $user->orders()->get();
 
         return view('dashboard', ['orders' => $orders]);

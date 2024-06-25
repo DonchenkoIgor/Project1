@@ -28,13 +28,9 @@ class Order extends Model
         return $this->belongsTo(Worker::class, 'workerId');
     }
 
-    public function service()
+    public function getWorkerNameAttribute()
     {
-       return $this->belongsTo(Service::class, 'serviceId');
-    }
-    public function schedule()
-    {
-        return $this->belongsTo(Schedule::class);
+        return $this->worker ? $this->worker->name : 'N/A';
     }
 
     public function user()
@@ -42,4 +38,23 @@ class Order extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function getUserNameAttribute()
+    {
+        return $this->user ? $this->user->name : 'N/A';
+    }
+
+    public function service()
+    {
+       return $this->belongsTo(Service::class, 'serviceId');
+    }
+
+    public function getServiceNameAttribute()
+    {
+        return $this->service ? $this->service->name : 'N/A';
+    }
+
+    public function schedule()
+    {
+        return $this->belongsTo(Schedule::class);
+    }
 }

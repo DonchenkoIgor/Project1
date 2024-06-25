@@ -2,14 +2,33 @@
 
 @section('content')
     <div class="container">
-        <h1>Order Confirmation</h1>
-            <p><strong>User ID:</strong>{{$order->user_id}} </p>
-            <p><strong>Order ID:</strong>{{$order->id}} </p>
-            <p><strong>Company ID:</strong>{{$order->companyId}} </p>
-            <p><strong>Worker ID:</strong>{{$order->workerId}} </p>
-            <p><strong>Date:</strong>{{$order->date}} </p>
-            <p><strong>Duration:</strong>{{$order->duration}} Min </p>
-            <p><strong>Price:</strong>{{$order->price}} UAH </p>
-            <p>Order successfully created</p>
+        <div class="card mt-5">
+            <div class="card-header bg-primary text-white">
+                <h1 class="card-title">Order Confirmation</h1>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <strong>User name:</strong> {{ $order->user->name ?? 'N/A' }}
+                </div>
+                <div class="mb-3">
+                    <strong>Selected service:</strong> {{ $order->service->name ?? 'N/A' }}
+                </div>
+                <div class="mb-3">
+                    <strong>Duration:</strong> {{ $order->duration }} Min
+                </div>
+                <div class="mb-3">
+                    <strong>Price:</strong> {{ $order->price }} UAH
+                </div>
+                <div class="mb-3">
+                    <strong>Date:</strong> {{ $order->date }}
+                </div>
+                <div class="mb-3">
+                    <strong>Worker name:</strong> {{ $order->workerId ?? 'N/A' }}
+                </div>
+                <div class="alert alert-success mt-4" role="alert">
+                    Order successfully created
+                </div>
+            </div>
+        </div>
     </div>
 @endsection

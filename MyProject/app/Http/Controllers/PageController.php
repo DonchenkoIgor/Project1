@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\Service;
 use App\Models\Worker;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class PageController extends Controller
 {
@@ -138,7 +139,16 @@ class PageController extends Controller
 
     public function confirmation(Request $request)
     {
-            $order = Order::first();
+        $user = $request->user();
+        $order = Order::where('user_id', $user->id)
+            ->latest()
+            ->with('worker', 'service')
+            ->first();
+
+        if (!$order) {
+            abort(404, 'Order not found');
+        }
+
             return view('pages.confirmation', ['order' => $order]);
     }
 }
